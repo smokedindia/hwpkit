@@ -44,7 +44,7 @@ government On-Nara document system from May 2026), so this conversion is becomin
 - Lossy targets (`docx`, `odt`, `html`, `rtf`, `txt`) print a warning; Hancom's compatibility prompt is accepted.
 - An existing output is refused unless `--force`; the output may never be the input file.
 
-Exit codes: 0 ok, 10 encrypted, 11 bad input, 16 output exists, 20 environment, 21 Hancom cleanup
+Exit codes: 0 ok, 10 encrypted, 11 bad input, 12 unsupported (only with `--engine java`; `auto` falls back to Hancom), 16 output exists, 20 environment, 21 Hancom cleanup
 failed, 22 Hancom busy, 23 Hancom unavailable (no Accessibility grant, foreign documents open, GUI
 timeout), 24 Java conversion failed. Every nonzero exit prints one line
 `hwpkit: <CODE>: <file>: <reason>` to stderr.

@@ -26,11 +26,11 @@ _BREW_PREFIXES = (Path("/opt/homebrew/opt/openjdk"), Path("/usr/local/opt/openjd
 _JVM_FLAGS = ("-Djava.awt.headless=true", "-XX:+UseSerialGC", "-XX:TieredStopAtLevel=1", "-Xss16m")
 
 # Exit codes of kr.hwpkit.Convert -> JavaEngineError.code
-_EXIT_CODES = {10: "encrypted", 11: "bad_input", 12: "bad_input"}
+_EXIT_CODES = {10: "encrypted", 11: "bad_input", 12: "unsupported"}
 
 
 class JavaEngineError(Exception):
-    """code is one of: "env", "encrypted", "bad_input", "failed"."""
+    """code is one of: "env", "encrypted", "bad_input", "unsupported", "failed"."""
 
     def __init__(self, code: str, message: str):
         super().__init__(message)
