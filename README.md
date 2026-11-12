@@ -53,3 +53,15 @@ Hancom Office HWP for Mac (tested with 12.30, Korean UI).
 - `hwpx_compare.py A.hwpx B.hwpx` compares content (paragraphs, tables, images, notes, numbering).
 
 Design and review: `docs/hwp-to-hwpx-converter.md`. Deferred work: `TODOS.md`.
+
+## Credits and license
+
+hwpkit's own code is MIT-licensed (see `LICENSE`). `make install` downloads and builds, on your
+machine, [hwp2hwpx](https://github.com/neolord0/hwp2hwpx),
+[hwplib](https://github.com/neolord0/hwplib) and [hwpxlib](https://github.com/neolord0/hwpxlib)
+by neolord0, licensed under the Apache License 2.0. This repository does not include their code
+or binaries.
+
+Hancom, Hancom Office, HWP and HWPX are trademarks of Hancom Inc. This project is not affiliated
+with or endorsed by Hancom. The GUI engine requires a separately licensed copy of Hancom Office
+HWP for Mac.

@@ -1,6 +1,8 @@
 {
   "name": "hwpkit-marketplace",
-  "owner": { "name": "hwpkit maintainers" },
+  "owner": {
+    "name": "smokedindia"
+  },
   "description": "HWP/HWPX conversion tools for Claude Code on macOS",
   "plugins": [
     {

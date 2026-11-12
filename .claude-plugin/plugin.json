@@ -2,5 +2,18 @@
   "name": "hwpkit",
   "description": "Convert Hangul HWP documents on macOS: .hwp to .hwpx headless (Java), and to PDF/.hwp/.docx via Hancom Office HWP for Mac; compare .hwpx files for lost content.",
   "version": "0.1.0",
-  "keywords": ["hwp", "hwpx", "hancom", "hangul", "korean", "pdf", "macos"]
+  "keywords": [
+    "hwp",
+    "hwpx",
+    "hancom",
+    "hangul",
+    "korean",
+    "pdf",
+    "macos"
+  ],
+  "author": {
+    "name": "smokedindia",
+    "url": "https://github.com/smokedindia"
+  },
+  "license": "MIT"
 }
