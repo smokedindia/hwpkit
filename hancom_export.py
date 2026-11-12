@@ -60,6 +60,7 @@ EXIT = {
     "ok": 0,
     "encrypted": 10,
     "bad_input": 11,
+    "unsupported": 12,
     "output_exists": 16,
     "env": 20,
     "cleanup_failed": 21,
@@ -423,6 +424,24 @@ def resolve_output_path(dest: Path, force: bool) -> Path:
 
 # ---------------------------------------------------------------- main
 
+OLE_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"  # HWP 5.x
+ZIP_MAGIC = b"PK\x03\x04"  # HWPX (also an HWPX renamed to .hwp)
+HWP3_PREFIX = b"HWP Document File V3"
+
+
+def check_container(src: Path) -> None:
+    """Reject files that are no HWP document at all, before any engine sees them.
+
+    Hancom opens arbitrary bytes as a plain-text import dialog instead of failing,
+    so these must never reach the GUI fallback.
+    """
+    with src.open("rb") as f:
+        head = f.read(len(HWP3_PREFIX))
+    allowed = (ZIP_MAGIC,) if src.suffix.lower() == ".hwpx" else (OLE_MAGIC, ZIP_MAGIC, HWP3_PREFIX)
+    if not head.startswith(allowed):
+        raise HwpkitError("bad_input", f"not an HWP document (unrecognised file signature): {src.name}")
+
+
 def java_route(src: Path, fmt: str, engine: str) -> bool:
     """True when the headless Java engine should do this conversion."""
     if engine == "hancom" or fmt != "hwpx" or src.suffix.lower() != ".hwp":
@@ -440,7 +459,7 @@ def export_java(src: Path, out: Path) -> Path:
     try:
         engine_java.convert(src, out)
     except engine_java.JavaEngineError as e:
-        code = {"encrypted": "encrypted", "bad_input": "bad_input", "env": "env"}.get(e.code, "java_failed")
+        code = e.code if e.code in {"encrypted", "bad_input", "unsupported", "env"} else "java_failed"
         raise HwpkitError(code, f"java engine: {e}") from e
     return out
 
@@ -452,6 +471,7 @@ def export(src: Path, fmt: str, dest: Path, force: bool, engine: str = "auto") -
         raise HwpkitError("bad_input", f"not an HWP/HWPX file: {src.name}")
     if dest == src:
         raise HwpkitError("output_exists", "output would replace the input file; choose another -o")
+    check_container(src)
     if java_route(src, fmt, engine):
         out = resolve_output_path(dest, force)
         try:
