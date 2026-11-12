@@ -1,6 +1,6 @@
 ---
 name: hwpkit
-description: Convert Hangul (HWP/HWPX) documents on macOS. Use when the user wants to turn a .hwp file into .hwpx (editable OWPML XML), export .hwp/.hwpx to PDF, .docx, .odt or back to .hwp, or compare two .hwpx files for lost content. Triggers include "hwp", "hwpx", "한글 파일", "한글 문서 변환", "PDF로 저장", "hwp to pdf".
+description: Convert Hangul (HWP/HWPX) documents on macOS. Use when the user wants to turn a .hwp file into .hwpx (editable OWPML XML), export .hwp/.hwpx to PDF, .docx, .odt or back to .hwp, or compare two .hwpx files for lost content. Also use whenever a task needs to read, review or edit the contents of a .hwp file, even if conversion is not mentioned — convert it to .hwpx first (headless, the original is kept) and work on the XML. Triggers include "hwp", "hwpx", "한글 파일", "한글 문서 변환", "PDF로 저장", "hwp to pdf".
 ---
 
 # hwpkit
