@@ -15,7 +15,7 @@ python3 hancom_export.py report.hwpx --to hwp --force    # GUI; --force replaces
 | `.hwp` → `.hwpx` when Java fails | Hancom GUI fallback (notice on stderr) | yes |
 
 `--engine java|hancom` forces one engine. Exit codes: 0 ok, 10 encrypted, 11 bad input,
-16 output exists, 20 environment, 21 cleanup failed, 22 Hancom busy, 23 Hancom unavailable.
+16 output exists, 20 environment, 21 cleanup failed, 22 Hancom busy, 23 Hancom unavailable, 24 Java conversion failed.
 
 ## Setup
 

@@ -65,6 +65,7 @@ EXIT = {
     "cleanup_failed": 21,
     "busy": 22,
     "hancom_unavailable": 23,
+    "java_failed": 24,
 }
 
 
@@ -439,7 +440,7 @@ def export_java(src: Path, out: Path) -> Path:
     try:
         engine_java.convert(src, out)
     except engine_java.JavaEngineError as e:
-        code = {"encrypted": "encrypted", "bad_input": "bad_input"}.get(e.code, "env")
+        code = {"encrypted": "encrypted", "bad_input": "bad_input", "env": "env"}.get(e.code, "java_failed")
         raise HwpkitError(code, f"java engine: {e}") from e
     return out
 
