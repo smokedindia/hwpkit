@@ -67,3 +67,15 @@ For each file, while it's open in Hancom, count what's really there. This become
 | 3 | | | | | | |
 | 4 | | | | | | |
 | 5 | | | | | | |
+
+## Java engine render check (2026-11-12)
+
+Java-made `.hwpx` of the 31-page report opened in Hancom 12.30 without errors and exported to PDF via
+`hancom_export.py --to pdf`. Compared with the user's manual Hancom PDF of the same document:
+
+- Pages 31 = 31; extracted text identical on all 31 pages (PDFKit).
+- Pixels (100 dpi): 27 pages identical. Page 1: 13.8 %, page 7: 10.5 % (both a uniform 1.0 pt vertical
+  shift of the whole page, plus residual line-edge noise), page 3: 1.6 %, page 5: 0.4 % (sub-point table
+  border positions, no shift). Side-by-side renders show no visible content, table or highlight change.
+- Likely cause: the converter writes slightly different page/table geometry on the two cover-style pages
+  (1, 7). Not investigated further; worth a look if a form must align to a pre-printed page.
