@@ -18,7 +18,7 @@ import subprocess
 import zipfile
 from pathlib import Path
 
-INSTALL_HINT = "run `make -C hwpkit install`"
+INSTALL_HINT = f"run `brew install openjdk` if needed, then `make -C \"{Path(__file__).resolve().parent}\" install`"
 DEFAULT_JAR = Path.home() / ".local/share/hwpkit/hwp2hwpx-all.jar"
 _BREW_JDK_SUFFIX = Path("libexec/openjdk.jdk/Contents/Home")
 _BREW_PREFIXES = (Path("/opt/homebrew/opt/openjdk"), Path("/usr/local/opt/openjdk"))
@@ -146,3 +146,16 @@ def _message(proc: subprocess.CompletedProcess) -> str:
             return ln.removeprefix("hwpkit-java: ")
     tail = lines[-1] if lines else "no stderr"
     return f"{proc.returncode}: {tail}"
+
+
+if __name__ == "__main__":
+    import sys
+
+    if sys.argv[1:] == ["--check"]:
+        if available():
+            print(f"hwpkit java engine ready (upstream {version()})")
+            sys.exit(0)
+        print(f"hwpkit java engine not installed; {INSTALL_HINT}", file=sys.stderr)
+        sys.exit(20)
+    print("usage: engine_java.py --check", file=sys.stderr)
+    sys.exit(2)

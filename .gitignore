@@ -2,5 +2,5 @@ __pycache__/
 *.pyc
 .DS_Store
 .gstack/
-# local outputs; the test corpus lives under tests/fixtures/ (TODOS.md: replace before any push)
+# local outputs
 /out/

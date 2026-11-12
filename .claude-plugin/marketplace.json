@@ -1,0 +1,12 @@
+{
+  "name": "hwpkit-marketplace",
+  "owner": { "name": "hwpkit maintainers" },
+  "description": "HWP/HWPX conversion tools for Claude Code on macOS",
+  "plugins": [
+    {
+      "name": "hwpkit",
+      "source": "./",
+      "description": "Convert .hwp to .hwpx (headless), export to PDF/.hwp/.docx via Hancom Office for Mac, compare .hwpx files."
+    }
+  ]
+}
